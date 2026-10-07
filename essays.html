@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HESZ7BCJ0B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HESZ7BCJ0B');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="csrf-token" content="DvJwximWuRvAbyWYeVvtcKBFSqUx9KPghwEO86hwE4QP7S1kB4iZcTCjKD7pSiDJ">
+<script src="static/js/tailwindcss-4.1.17.min.js"></script>
+<script src="static/js/gsap-3.13.0.min.js"></script>
+
+
+    <body 
+        class="bg-white "
+        style=""
+    >
+        
+
+<style>
+    .no-transition {
+        transition: none !important;
+    }
+    
+    /* Custom CSS that can't be achieved with Tailwind */
+    .page-container {
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(0);
+    }
+        
+    .page-container.menu-open {
+        transform: translateX(-300px);
+    }
+    
+    .slide-menu {
+        right: -300px;
+        transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .slide-menu.menu-open {
+        right: 0;
+    }
+</style>
+
+<!-- Always visible navbar (original styling) -->
+<header class="text-white w-full h-16 flex justify-center items-center absolute top-0 left-0 z-80">
+    <nav class="container flex justify-between items-center mx-5 md:mx-10">
+        <a href="index.html" class="block relative">
+            
+                <img 
+                    id="logo-original" 
+                    src="static/img/SMB-black.svg" 
+                    class="h-8"
+                />
+            
+         </a>
+
+        <style>
+            .show-above-400px-only {
+                display: none;
+            }
+            @media (min-width: 400px) {
+                .show-above-400px-only {
+                    display: block;
+                }
+            }
+        </style>
+        <div class="flex items-center gap-4">
+            <a href="get-offer.html" class="text-sm font-medium show-above-400px-only">
+                <button 
+                    class="outline outline-1 px-3 py-1.5 rounded-full 
+                           
+                                text-black outline-black hover:bg-black hover:text-white hover:outline-black
+                           
+                           duration-500 cursor-pointer transition-colors"
+                >Get Offer</button>
+            </a>
+            <!-- HTML -->
+            <button
+                id="hamburger-clear"
+                aria-label="Open menu"
+                class="btn-hamburger "
+            >
+                <svg
+                    class="btn-hamburger__icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18" height="18"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+                    <!-- Base color lines -->
+                    <g class="icon-base" pointer-events="none">
+                        <path d="M3 12h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 6h18"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 18h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <!-- Hover color lines (fades in) -->
+                    <g class="icon-hover" pointer-events="none">
+                        <path d="M3 12h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 6h18"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 18h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                </svg>
+            </button>
+
+            <style>
+                /* Core button visuals (rough Tailwind equivalence for look/feel) */
+                .btn-hamburger {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0.4375rem;         /* ≈ px-1.75 / py-1.75 */
+                    border-radius: 9999px;
+                    font: 500 0.875rem/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+                    cursor: pointer;
+                    outline: 1px solid;
+                    background-color: transparent;
+                    user-select: none;
+                    -webkit-tap-highlight-color: transparent;
+
+                    /* animate background + outline only (keep this simple for Safari) */
+                    transition: background-color 300ms ease-out,
+                                outline-color 300ms ease-out;
+                }
+
+                /* SVG sizing & layer stability */
+                .btn-hamburger__icon {
+                    display: block;
+                    width: 18px;
+                    height: 18px;
+                    /* make Safari happy */
+                    transform: translateZ(0);
+                    will-change: opacity;
+                }
+
+                /* Cross-fade the two icon layers */
+                .icon-base,
+                .icon-hover {
+                    transition: opacity 300ms ease-out;
+                }
+
+                /* ---------- Default route (black -> white on hover) ---------- */
+                .btn-hamburger {
+                    outline-color: #000;
+                }
+                .btn-hamburger .icon-base  path {
+                    stroke: #000; 
+                }
+                .btn-hamburger .icon-hover path {
+                    stroke: #fff; 
+                }
+
+                .btn-hamburger:hover {
+                    background-color: #000;
+                    outline-color: #000;
+                }
+                .btn-hamburger .icon-base  { 
+                    opacity: 1;
+                 }
+                .btn-hamburger .icon-hover {
+                     opacity: 0; 
+                }
+                .btn-hamburger:hover .icon-base  {
+                    opacity: 0; 
+                }
+                .btn-hamburger:hover .icon-hover {
+                    opacity: 1; 
+                }
+
+                /* ---------- Home route (white -> black on hover) ---------- */
+                .btn-hamburger.is-home {
+                    outline-color: #fff;
+                }
+                .btn-hamburger.is-home .icon-base  path { 
+                    stroke: #fff; 
+                }
+                .btn-hamburger.is-home .icon-hover path {
+                     stroke: #000; 
+                }
+
+                .btn-hamburger.is-home:hover {
+                    background-color: #fff;
+                    outline-color: #fff;
+                }
+
+                /* Respect reduced motion */
+                @media (prefers-reduced-motion: reduce) {
+                    .btn-hamburger,
+                    .icon-base,
+                    .icon-hover { 
+                        transition: none !important; 
+                    }
+                }
+            </style>
+        </div>
+    </nav>
+</header>
+
+<!-- Sliding navbar that appears when scrolling past hero -->
+<header id="navbar" class="text-black w-full h-16 flex justify-center items-center fixed top-0 left-0 z-50 bg-white border-b border-gray-200 transform -translate-y-full no-transition z-80">
+    <!-- Navbar content wrapper for opacity control -->
+    <div id="navbar-content" class="w-full h-full flex justify-center items-center opacity-0 no-transition">
+        <nav class="container flex justify-between items-center mx-5 md:mx-10">
+            <a href="index.html" class="block relative">
+                
+                    <img 
+                        id="logo" 
+                        src="static/img/SMB-black.svg" 
+                        class="h-8"
+                    />
+                
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="get-offer.html" class="text-sm font-medium">
+                    <button 
+                        class="outline outline-1 px-3 py-1.5 rounded-full 
+                            
+                                    text-black outline-black hover:bg-black hover:text-white hover:outline-black
+                            
+                            duration-500 cursor-pointer transition-colors"
+                    >Get Offer</button>
+                </a>
+                <button id="hamburger-black" class="text-sm font-medium outline outline-1 px-1.75 py-1.75 rounded-full text-black hover:text-white outline-black hover:bg-black duration-500 cursor-pointer transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0.5 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
+                        <path d="M3 12h18"/>
+                        <path d="M3 6h18"/>
+                        <path d="M3 18h18"/>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Slide-out menu backdrop -->
+<div id="menu-backdrop" class="fixed inset-0 bg-black/50 opacity-0 invisible transition-all duration-700 ease-in-out z-90"></div>
+
+<!-- Slide-out menu -->
+<div id="slide-menu" class="slide-menu fixed top-0 w-75 h-screen bg-white shadow-2xl z-100 overflow-y-auto">
+    <div class="p-6 h-full flex flex-col">
+        <!-- Menu header -->
+        <div class="flex items-center justify-between mb-6 cursor-default select-none">
+            <h3 class="text-lg font-semibold text-gray-900">Menu</h3>
+            <button id="close-menu" class="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200 cursor-pointer hover:text-red-700">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Menu items -->
+        <nav class="space-y-3 flex-1">
+            <a href="index.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-blue-500 rounded-xl transition-colors duration-200 group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 text-gray-400 group-hover:text-blue-500 transition-colors duration-200">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9,22 9,12 15,12 15,22"/>
+                </svg>
+                Home
+            </a>
+            <a href="get-offer.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-green-500 rounded-xl transition-colors duration-200 group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 text-gray-400 group-hover:text-green-500 transition-colors duration-200">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+                Get Offer
+            </a>
+            <a href="why-sell.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-purple-500 rounded-xl transition-colors duration-200 group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 text-gray-400 group-hover:text-purple-500 transition-colors duration-200">
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 17h.01"/>
+                </svg>
+                Why Sell?
+            </a>
+            <a href="about-us.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-orange-500 rounded-xl transition-colors duration-200 group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 text-gray-400 group-hover:text-orange-500 transition-colors duration-200">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                About Us
+            </a>
+        </nav>
+        
+        <!-- Sign Out -->
+        
+        
+        <!-- Footer -->
+        <div class="pt-6 border-t border-gray-200">
+            <p class="text-sm text-gray-500 text-center">© 2026 SMB Royalty, LLC</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Prevent navbar slide-in animation on page load
+    document.addEventListener("DOMContentLoaded", function() {
+        const navbar = document.getElementById("navbar");
+        const navbarContent = document.getElementById("navbar-content");
+        
+        // Add no-transition class initially to prevent slide-in animation
+        navbar.classList.add("no-transition");
+        navbarContent.classList.add("no-transition");
+        
+        // Remove no-transition class after a short delay to enable smooth animations
+        setTimeout(() => {
+            navbar.classList.remove("no-transition");
+            navbar.classList.add("transition-transform", "duration-700", "ease-in-out");
+            navbarContent.classList.remove("no-transition");
+            navbarContent.classList.add("transition-opacity", "duration-700", "ease-in-out");
+        }, 100);
+    });
+
+    // Navbar scroll behavior
+    window.addEventListener("scroll", function() {
+        const navbar = document.getElementById("navbar");
+        const navbarContent = document.getElementById("navbar-content");
+        const heroHeight = window.innerHeight; // Hero image takes full viewport height
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > heroHeight) {
+            // Show navbar when scrolled below hero
+            navbar.classList.remove("-translate-y-full");
+            navbarContent.classList.remove("opacity-0");
+            navbarContent.classList.add("opacity-100");
+        } else {
+            // Hide navbar when at top
+            navbar.classList.add("-translate-y-full");
+            navbarContent.classList.remove("opacity-100");
+            navbarContent.classList.add("opacity-0");
+        }
+    });
+
+    // Slide-out menu functionality
+    const hamburgerClear = document.getElementById("hamburger-clear");
+    const hamburgerBlack = document.getElementById("hamburger-black");
+    const slideMenu = document.getElementById("slide-menu");
+    const menuBackdrop = document.getElementById("menu-backdrop");
+    const closeMenu = document.getElementById("close-menu");
+    let isMenuOpen = false;
+
+    function toggleMenu() {
+        if (isMenuOpen) {
+            closeMenuFunc();
+        } else {
+            openMenuFunc();
+        }
+    }
+
+    function addHashToUrl(url, hash) {
+        window.location.href = url + "#" + hash;
+    }
+
+    function removeHashFromUrl() {
+        history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
+
+    function openMenuFunc() {
+        if (isMenuOpen) return;
+        
+        isMenuOpen = true;
+        
+        // Add menu-open class to body and page container
+        document.body.classList.add("menu-open");
+        
+        // Find the main page container (usually body or a main wrapper)
+        const pageContainer = document.body;
+        pageContainer.classList.add("menu-open");
+        
+        // Show menu and backdrop
+        slideMenu.classList.add("menu-open");
+        menuBackdrop.classList.remove("opacity-0", "invisible");
+        menuBackdrop.classList.add("opacity-100", "visible");
+        
+        addHashToUrl(window.location.href, "menu");
+    }
+
+    function closeMenuFunc() {
+        if (!isMenuOpen) return;
+        
+        isMenuOpen = false;
+        
+        // Remove menu-open class from body and page container
+        document.body.classList.remove("menu-open");
+        
+        // Find the main page container
+        const pageContainer = document.body;
+        pageContainer.classList.remove("menu-open");
+        
+        // Hide menu and backdrop
+        slideMenu.classList.remove("menu-open");
+        menuBackdrop.classList.remove("opacity-100", "visible");
+        menuBackdrop.classList.add("opacity-0", "invisible");
+        
+        removeHashFromUrl();
+    }
+
+    // Event listeners
+    hamburgerBlack.addEventListener("click", toggleMenu);
+    hamburgerClear.addEventListener("click", toggleMenu);
+    closeMenu.addEventListener("click", closeMenuFunc);
+    
+    // Close menu when clicking backdrop
+    menuBackdrop.addEventListener("click", closeMenuFunc);
+    
+    // Close menu on escape key
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape" && isMenuOpen) {
+            closeMenuFunc();
+        }
+    });
+    
+    // Close menu when clicking on menu items (optional)
+    const menuItems = slideMenu.querySelectorAll('nav a');
+    menuItems.forEach(item => {
+        item.addEventListener('click', closeMenuFunc);
+    });
+</script>
+
+        <main class="">
+            
+<div class="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center px-4 pt-28 pb-30 md:pt-32 md:pb-36">
+    <div class="max-w-6xl w-full flex flex-col items-center justify-start text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 -10 475 520" style="enable-background:new 0 0 475.881 503.994;" xml:space="preserve" class="max-w-sm px-10">
+            <path d="M432.33,342.103c3.28,1.12,6.85-0.64,7.97-3.92c1.12-3.29-0.64-6.86-3.92-7.98c-3.29-1.12-6.86,0.64-7.98,3.93   C427.281,337.413,429.04,340.983,432.33,342.103z"/><path d="M412.41,221.623c3.28,1.12,6.85-0.64,7.97-3.93c1.12-3.29-0.64-6.86-3.92-7.98c-3.29-1.11-6.86,0.64-7.98,3.93   C407.36,216.933,409.12,220.503,412.41,221.623z"/><path d="M372.76,208.123c3.29,1.12,6.86-0.63,7.98-3.92c1.12-3.29-0.64-6.86-3.93-7.98c-3.28-1.12-6.86,0.64-7.98,3.93   C367.72,203.433,369.47,207.013,372.76,208.123z"/><path d="M186.18,144.633c3.28,1.11,6.85-0.64,7.97-3.93c1.12-3.29-0.64-6.86-3.92-7.98c-3.29-1.12-6.86,0.64-7.98,3.93   C181.13,139.943,182.89,143.513,186.18,144.633z"/><path d="M146.53,131.133c3.29,1.12,6.86-0.64,7.98-3.92c1.12-3.29-0.64-6.86-3.93-7.98c-3.29-1.12-6.86,0.64-7.98,3.93   C141.49,126.443,143.24,130.013,146.53,131.133z"/><path d="M471.881,432.283h-25.16v-10.04h3.479c3.655,0,7.092-1.425,9.679-4.011c2.587-2.587,4.012-6.024,4.012-9.679   c0-7.549-6.142-13.69-13.69-13.69h-11.85v-22.02c0-4.786,2.548-9.289,6.651-11.752l5.817-3.498c3.979-2.388,7.29-5.789,9.571-9.829   c2.29-4.042,3.5-8.631,3.5-13.271c0-8.64-3.985-16.536-10.935-21.663c-6.981-5.151-15.751-6.635-24.059-4.069   c-30.685,9.495-50.777,29.842-59.78,60.512l-0.451-0.174c-7.42-2.853-15.783,0.014-19.88,6.816l-5.67,9.389   c-1.316,2.178-2.244,4.54-2.792,6.991l-11.321-4.79l60.673-92.952h20.693c3.835,0,7.439-1.492,10.148-4.202   c2.71-2.709,4.202-6.31,4.202-10.138c0-6.489-4.332-11.978-10.254-13.747c0.448-7.974,2.563-13.733,6.78-18.508   c1.008,0.18,2.023,0.277,3.037,0.277c2.629,0,5.244-0.603,7.672-1.796c4.175-2.053,7.297-5.607,8.791-10.007l7.199-21.157   c1.501-4.402,1.196-9.124-0.857-13.295c-2.052-4.169-5.606-7.291-10.01-8.792L145.421,93.927   c-18.549-22.38-28.375-48.424-29.995-79.591c-0.265-5.144-3.076-9.751-7.521-12.323c-4.392-2.541-9.715-2.686-14.236-0.387   C53.236,22.174,27.061,52.231,15.867,90.961c-7.579,26.204-8.069,56.194-1.459,89.139c0.973,4.84,3.427,9.232,6.973,12.559v123.768   c-3.101,1.706-5.455,4.234-6.762,7.311c-3.433,8.08,1.059,17.848,10.241,23.153v101.983c-5.769,1.607-10.02,6.899-10.02,13.177   v17.95H4c-2.209,0-4,1.791-4,4v15.99c0,2.209,1.791,4,4,4s4-1.791,4-4v-11.99h10.841c2.209,0,4-1.791,4-4v-21.95   c0-3.137,2.548-5.69,5.68-5.69h19.49c3.137,0,5.689,2.553,5.689,5.69v21.95c0,2.209,1.791,4,4,4h10.83v11.99c0,2.209,1.791,4,4,4   s4-1.791,4-4v-15.99c0-2.209-1.791-4-4-4H61.7v-17.95c0-6.28-4.255-11.572-10.029-13.178V345.621   c1.404-1.36,2.504-2.941,3.272-4.736c2.896-6.828,0.117-15.106-6.763-20.745V196.628c0.612-0.305,1.215-0.631,1.802-0.99   l77.701-47.365l90.995,30.968c-3.504,9.053-9.999,14.595-19.777,16.877c-1.811,0.422-3.091,2.037-3.091,3.896v28.51h-14   c-2.209,0-4,1.791-4,4v95.37c0,2.209,1.791,4,4,4h10.469l-52.187,166.906c-0.659,2.108,0.516,4.353,2.624,5.012   c0.397,0.124,0.799,0.183,1.194,0.183c1.703,0,3.282-1.096,3.816-2.807l52.933-169.294h23.119l-52.187,166.906   c-0.66,2.108,0.515,4.352,2.623,5.012c0.397,0.124,0.8,0.183,1.195,0.183c1.703,0,3.281-1.096,3.816-2.807l5.201-16.634h105.114   l5.201,16.634c0.535,1.711,2.113,2.807,3.816,2.807c0.396,0,0.798-0.059,1.195-0.183c2.108-0.66,3.283-2.903,2.623-5.012   l-52.187-166.906h23.119l52.933,169.294c0.535,1.711,2.113,2.807,3.816,2.807c0.396,0,0.798-0.059,1.194-0.183   c2.108-0.66,3.283-2.903,2.624-5.012l-26.532-84.857l43.347,18.341H346.5c-2.209,0-4,1.791-4,4v24.84c0,2.209,1.791,4,4,4h19.91   v10.38h-9.93c-2.209,0-4,1.791-4,4v20.49c0,2.209,1.791,4,4,4s4-1.791,4-4v-16.49h9.93c2.209,0,4-1.791,4-4v-14.38h64.311v9.19   h-46.54c-2.209,0-4,1.791-4,4s1.791,4,4,4h49.619c6.664,3.287,11.218,9.311,14.281,18.897c0.543,1.7,2.116,2.784,3.81,2.784   c0.403,0,0.813-0.062,1.219-0.191c2.104-0.672,3.265-2.923,2.593-5.027c-3.52-11.014-9.089-18.542-16.98-22.925v-10.728h25.16   c2.209,0,4-1.791,4-4v-24.84C475.881,434.074,474.09,432.283,471.881,432.283z M349.964,389.44l5.672-9.394   c2.096-3.476,6.368-4.939,10.152-3.483l4.58,1.77c1.069,0.413,2.264,0.349,3.281-0.179c1.018-0.526,1.76-1.464,2.04-2.575   c7.719-30.636,25.896-49.993,55.57-59.175c5.854-1.808,12.03-0.765,16.947,2.863c4.883,3.603,7.684,9.152,7.684,15.225   c0,3.26-0.851,6.486-2.464,9.333c-1.604,2.841-3.93,5.23-6.728,6.909l-5.817,3.499c-6.496,3.9-10.531,11.031-10.531,18.609v26.02   c0,2.209,1.791,4,4,4h15.85c3.138,0,5.69,2.553,5.69,5.69c0,1.518-0.593,2.946-1.668,4.021c-1.076,1.076-2.505,1.668-4.022,1.668   h-7.479c-2.209,0-4,1.791-4,4v14.04h-66.447l-20.89-24.862c-2.225-2.65-3.513-6.009-3.626-9.469   C347.652,394.947,348.415,392.004,349.964,389.44z M416.721,280.213c0,1.691-0.66,3.283-1.858,4.481   c-1.199,1.199-2.794,1.859-4.492,1.859h-29.62c-3.501,0-6.35-2.844-6.35-6.34c0-1.698,0.66-3.293,1.858-4.492   s2.794-1.858,4.491-1.858h29.62C413.872,273.863,416.721,276.711,416.721,280.213z M439.912,205.512   c1.108,2.253,1.272,4.803,0.461,7.183l-7.201,21.163c-0.807,2.375-2.491,4.294-4.745,5.402c-2.255,1.108-4.808,1.273-7.188,0.467   l-292.748-99.629c-4.91-1.674-7.55-7.03-5.884-11.936l7.199-21.158c0.812-2.38,2.5-4.302,4.757-5.412   c2.255-1.109,4.807-1.273,7.188-0.462l292.748,99.629C436.88,201.57,438.803,203.258,439.912,205.512z M52.051,104.299   c2.088-7.257,4.569-14.23,7.406-20.814l40.236,20.729c-2.429,4.347-4.502,9.123-6.195,14.273L52.051,104.299z M43.485,164.735   c0.293-12.568,1.34-24.56,3.124-35.781l36.624,12.832L43.485,164.735z M71.18,61.451c5.306-8.143,11.411-15.789,17.993-22.541   c1.772,13.996,6.433,27.056,13.923,39.044L71.18,61.451z M21.982,326.866c0.992-2.337,3.129-3.518,4.747-4.097   c1.59-0.57,2.651-2.077,2.651-3.766V197.585c2.675,0.99,5.504,1.514,8.342,1.514c0.821,0,1.64-0.058,2.458-0.144v123.177   c0,1.315,0.646,2.546,1.729,3.293c4.966,3.424,7.297,8.497,5.674,12.323c-0.471,1.099-1.238,2.044-2.286,2.814   c-3.377,2.488-9.1,2.692-14.234,0.513c-0.16-0.069-0.321-0.137-0.534-0.238C23.848,337.769,20.014,331.501,21.982,326.866z    M185.811,300.553h28.939c2.209,0,4-1.791,4-4v-43.19c0-2.209-1.791-4-4-4h-10.939v-12.84h36.939v70.95c0,2.209,1.791,4,4,4h43.421   v12.42h-102.36V300.553z M203.02,425.091l67.69,34.751h-78.556L203.02,425.091z M217.17,423.363h53.24l10.18,32.559L217.17,423.363   z M212.291,415.363l44.75-34.756l10.867,34.756H212.291z M208.247,408.375l9.525-30.462h29.698L208.247,408.375z M186.93,476.553   l2.723-8.71h94.664l2.723,8.71H186.93z M253.698,369.912h-33.425l11.888-38.02h9.649L253.698,369.912z M292.171,331.892   c2.209,0,4-1.791,4-4v-95.37c0-2.209-1.791-4-4-4h-28.66v-34.025l111.59,37.977c1.063,13.598,4.872,24.776,11.351,33.388h-5.702   c-3.835,0-7.438,1.492-10.147,4.201c-2.404,2.404-3.844,5.513-4.14,8.862l-63.657,97.493l-8.29-3.508l-12.825-41.019H292.171z    M297.647,382.923l42.371,17.93c0.633,4.288,2.436,8.374,5.24,11.713l11.383,13.548l-52.426-22.182L297.647,382.923z"/>
+        </svg>
+        <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-8 mt-10">
+            Under Construction
+        </h1>
+        <p class="italic">
+            This page is under construction. Please check back soon.
+        </p>
+    </div>
+</div>
+
+        </main>
+
+        
+
+<footer class="bg-gray-800 text-white py-12 flex flex-col items-center justify-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(5,min-content)] md:py-12 whitespace-nowrap gap-x-14 gap-y-10 mb-8">
+            <!-- Column 1: Branding & Tagline -->
+            <div class="lg:col-span-1">
+                <h3 class="text-xl font-bold text-green-400 mb-3">SMB Royalty</h3>
+                <p class="text-gray-400 text-xs">&copy; 2025 SMB Royalty, LLC.</p>
+                <p class="text-gray-400 text-xs">All rights reserved.</p>
+            </div>
+
+            <!-- Column 2: Contact Information -->
+            <div class="lg:col-span-1">
+                <h4 class="text-lg font-semibold mb-4 text-green-400">Contact Us</h4>
+                <div class="space-y-1 text-sm text-gray-300 grid grid-cols-[min-content_1fr] gap-x-2">
+                    <p>Address:</p>
+                    <p>SMB ROYALTY<br>P.O. Box 236<br>Midland, TX&nbsp;&nbsp;79702</p>
+                    <p>Phone:</p>
+                    <a href="tel:+14322421225" class="text-gray-300 hover:text-green-400 transition-colors">(432) 242-1225</a>
+                    <p>Email:</p>
+                    <a href="mailto:info@smbroyalty.com" class="text-gray-300 hover:text-green-400 transition-colors">info@smbroyalty.com</a>
+                </div>
+            </div>
+     
+            <!-- Column 3: Quick Links -->
+            <div class="lg:col-span-1">
+                <h4 class="text-lg font-semibold mb-4 text-green-400">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="index.html" class="text-gray-300 hover:text-green-400 transition-colors">Home</a></li>
+                    <li><a href="why-sell.html" class="text-gray-300 hover:text-green-400 transition-colors">Why Sell?</a></li>
+                    <!-- <li><a href="/our-philosophy" class="text-gray-300 hover:text-green-400 transition-colors">Our Philosophy</a></li> -->
+                    <!-- <li><a href="/the-process" class="text-gray-300 hover:text-green-400 transition-colors">Buying Process</a></li> -->
+                    <li><a href="faq.html" class="text-gray-300 hover:text-green-400 transition-colors">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Resources -->
+            <div class="lg:col-span-1">
+                <h4 class="text-lg font-semibold mb-4 text-green-400">Resources</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="about-us.html" class="text-gray-300 hover:text-green-400 transition-colors">About Us</a></li>
+                    <li><a href="essays.html" class="text-gray-300 hover:text-green-400 transition-colors">Essays</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="lg:col-span-2 flex justify-center">
+            <div class="flex items-end gap-3">
+                <a href="https://robbinsfamilyminerals.com/" target="_blank" class="hover:text-green-400 transition-colors">
+                    <img src="static/icon/RFI-white-clear.png" alt="RFI Logo" class="h-6 opacity-70">
+                </a>
+                <span class="text-gray-400 select-none">•</span>
+                <a href="https://texasranchsalesllc.com/" target="_blank" class="hover:text-green-400 transition-colors opacity-70">
+                    <img src="static/icon/TRS-white-clear.png" alt="TRS Logo" class="h-4">
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-gray-700 pt-6 mt-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+                <div class="text-sm text-gray-400">
+                    <a href="privacy.html" class="hover:text-green-400 transition-colors">Privacy</a>
+                    <span class="mx-2">•</span>
+                    <a href="terms.html" class="hover:text-green-400 transition-colors">Terms</a>
+                    <span class="mx-2">•</span>
+                    <a href="offer-terms.html" class="hover:text-green-400 transition-colors">Instant Offer Terms</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+        <div class="absolute inset-0 -z-1">
+            
+        </div>
+    </body>
+</html> 

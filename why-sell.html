@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HESZ7BCJ0B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HESZ7BCJ0B');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="csrf-token" content="LU1Q4M6mf8WXWfef3WfLVVx0caBObkaNpVW8FA1WplhcSzjBq52hV4yE4nOGUSYg">
+<script src="static/js/tailwindcss-4.1.17.min.js"></script>
+<script src="static/js/gsap-3.13.0.min.js"></script>
+
+
+    <body 
+        class="bg-white "
+        style=""
+    >
+        
+
+<style>
+    .no-transition {
+        transition: none !important;
+    }
+    
+    /* Custom CSS that can't be achieved with Tailwind */
+    .page-container {
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(0);
+    }
+        
+    .page-container.menu-open {
+        transform: translateX(-300px);
+    }
+    
+    .slide-menu {
+        right: -300px;
+        transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .slide-menu.menu-open {
+        right: 0;
+    }
+</style>
+
+<!-- Always visible navbar (original styling) -->
+<header class="text-white w-full h-16 flex justify-center items-center absolute top-0 left-0 z-80">
+    <nav class="container flex justify-between items-center mx-5 md:mx-10">
+        <a href="index.html" class="block relative">
+            
+                <img 
+                    id="logo-original" 
+                    src="static/img/SMB-black.svg" 
+                    class="h-8"
+                />
+            
+         </a>
+
+        <style>
+            .show-above-400px-only {
+                display: none;
+            }
+            @media (min-width: 400px) {
+                .show-above-400px-only {
+                    display: block;
+                }
+            }
+        </style>
+        <div class="flex items-center gap-4">
+            <a href="get-offer.html" class="text-sm font-medium show-above-400px-only">
+                <button 
+                    class="outline outline-1 px-3 py-1.5 rounded-full 
+                           
+                                text-black outline-black hover:bg-black hover:text-white hover:outline-black
+                           
+                           duration-500 cursor-pointer transition-colors"
+                >Get Offer</button>
+            </a>
+            <!-- HTML -->
+            <button
+                id="hamburger-clear"
+                aria-label="Open menu"
+                class="btn-hamburger "
+            >
+                <svg
+                    class="btn-hamburger__icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18" height="18"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+                    <!-- Base color lines -->
+                    <g class="icon-base" pointer-events="none">
+                        <path d="M3 12h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 6h18"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 18h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <!-- Hover color lines (fades in) -->
+                    <g class="icon-hover" pointer-events="none">
+                        <path d="M3 12h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 6h18"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M3 18h18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                </svg>
+            </button>
+
+            <style>
+                /* Core button visuals (rough Tailwind equivalence for look/feel) */
+                .btn-hamburger {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0.4375rem;         /* ≈ px-1.75 / py-1.75 */
+                    border-radius: 9999px;
+                    font: 500 0.875rem/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+                    cursor: pointer;
+                    outline: 1px solid;
+                    background-color: transparent;
+                    user-select: none;
+                    -webkit-tap-highlight-color: transparent;
+
+                    /* animate background + outline only (keep this simple for Safari) */
+                    transition: background-color 300ms ease-out,
+                                outline-color 300ms ease-out;
+                }
+
+                /* SVG sizing & layer stability */
+                .btn-hamburger__icon {
+                    display: block;
+                    width: 18px;
+                    height: 18px;
+                    /* make Safari happy */
+                    transform: translateZ(0);
+                    will-change: opacity;
+                }
+
+                /* Cross-fade the two icon layers */
+                .icon-base,
+                .icon-hover {
+                    transition: opacity 300ms ease-out;
+                }
+
+                /* ---------- Default route (black -> white on hover) ---------- */
+                .btn-hamburger {
+                    outline-color: #000;
+                }
+                .btn-hamburger .icon-base  path {
+                    stroke: #000; 
+                }
+                .btn-hamburger .icon-hover path {
+                    stroke: #fff; 
+                }
+
+                .btn-hamburger:hover {
+                    background-color: #000;
+                    outline-color: #000;
+                }
+                .btn-hamburger .icon-base  { 
+                    opacity: 1;
+                 }
+                .btn-hamburger .icon-hover {
+                     opacity: 0; 
+                }
+                .btn-hamburger:hover .icon-base  {
+                    opacity: 0; 
+                }
+                .btn-hamburger:hover .icon-hover {
+                    opacity: 1; 
+                }
+
+                /* ---------- Home route (white -> black on hover) ---------- */
+                .btn-hamburger.is-home {
+                    outline-color: #fff;
+                }
+                .btn-hamburger.is-home .icon-base  path { 
+                    stroke: #fff; 
+                }
+                .btn-hamburger.is-home .icon-hover path {
+                     stroke: #000; 
+                }
+
+                .btn-hamburger.is-home:hover {
+                    background-color: #fff;
+                    outline-color: #fff;
+                }
+
+                /* Respect reduced motion */
+                @media (prefers-reduced-motion: reduce) {
+                    .btn-hamburger,
+                    .icon-base,
+                    .icon-hover { 
+                        transition: none !important; 
+                    }
+                }
+            </style>
+        </div>
+    </nav>
+</header>
+
+<!-- Sliding navbar that appears when scrolling past hero -->
+<header id="navbar" class="text-black w-full h-16 flex justify-center items-center fixed top-0 left-0 z-50 bg-white border-b border-gray-200 transform -translate-y-full no-transition z-80">
+    <!-- Navbar content wrapper for opacity control -->
+    <div id="navbar-content" class="w-full h-full flex justify-center items-center opacity-0 no-transition">
+        <nav class="container flex justify-between items-center mx-5 md:mx-10">
+            <a href="index.html" class="block relative">
+                
+                    <img 
+                        id="logo" 
+                        src="static/img/SMB-black.svg" 
+                        class="h-8"
+                    />
+                
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="get-offer.html" class="text-sm font-medium">
+                    <button 
+                        class="outline outline-1 px-3 py-1.5 rounded-full 
+                            
+                                    text-black outline-black hover:bg-black hover:text-white hover:outline-black
+                            
+                            duration-500 cursor-pointer transition-colors"
+                    >Get Offer</button>
+                </a>
+                <button id="hamburger-black" class="text-sm font-medium outline outline-1 px-1.75 py-1.75 rounded-full text-black hover:text-white outline-black hover:bg-black duration-500 cursor-pointer transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0.5 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
+                        <path d="M3 12h18"/>
+                        <path d="M3 6h18"/>
+                        <path d="M3 18h18"/>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Slide-out menu backdrop -->
+<div id="menu-backdrop" class="fixed inset-0 bg-black/50 opacity-0 invisible transition-all duration-700 ease-in-out z-90"></div>
+
+<!-- Slide-out menu -->
+<div id="slide-menu" class="slide-menu fixed top-0 w-75 h-screen bg-white shadow-2xl z-100 overflow-y-auto">
+    <div class="p-6 h-full flex flex-col">
+        <!-- Menu header -->
+        <div class="flex items-center justify-between mb-6 cursor-default select-none">
+            <h3 class="text-lg font-semibold text-gray-900">Menu</h3>
+            <button id="close-menu" class="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200 cursor-pointer hover:text-red-700">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Menu items -->
+        <nav class="space-y-3 flex-1">
+            <a href="index.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-blue-500 rounded-xl transition-colors duration-200 group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 text-gray-400 group-hover:text-blue-500 transition-colors duration-200">
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9,22 9,12 15,12 15,22"/>
+                </svg>
+                Home
+            </a>
+            <a href="get-offer.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-green-500 rounded-xl transition-colors duration-200 group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 text-gray-400 group-hover:text-green-500 transition-colors duration-200">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+                Get Offer
+            </a>
+            <a href="why-sell.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-purple-500 rounded-xl transition-colors duration-200 group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 text-gray-400 group-hover:text-purple-500 transition-colors duration-200">
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 17h.01"/>
+                </svg>
+                Why Sell?
+            </a>
+            <a href="about-us.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-100 hover:text-orange-500 rounded-xl transition-colors duration-200 group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 text-gray-400 group-hover:text-orange-500 transition-colors duration-200">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                About Us
+            </a>
+        </nav>
+        
+        <!-- Sign Out -->
+        
+        
+        <!-- Footer -->
+        <div class="pt-6 border-t border-gray-200">
+            <p class="text-sm text-gray-500 text-center">© 2026 SMB Royalty, LLC</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Prevent navbar slide-in animation on page load
+    document.addEventListener("DOMContentLoaded", function() {
+        const navbar = document.getElementById("navbar");
+        const navbarContent = document.getElementById("navbar-content");
+        
+        // Add no-transition class initially to prevent slide-in animation
+        navbar.classList.add("no-transition");
+        navbarContent.classList.add("no-transition");
+        
+        // Remove no-transition class after a short delay to enable smooth animations
+        setTimeout(() => {
+            navbar.classList.remove("no-transition");
+            navbar.classList.add("transition-transform", "duration-700", "ease-in-out");
+            navbarContent.classList.remove("no-transition");
+            navbarContent.classList.add("transition-opacity", "duration-700", "ease-in-out");
+        }, 100);
+    });
+
+    // Navbar scroll behavior
+    window.addEventListener("scroll", function() {
+        const navbar = document.getElementById("navbar");
+        const navbarContent = document.getElementById("navbar-content");
+        const heroHeight = window.innerHeight; // Hero image takes full viewport height
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > heroHeight) {
+            // Show navbar when scrolled below hero
+            navbar.classList.remove("-translate-y-full");
+            navbarContent.classList.remove("opacity-0");
+            navbarContent.classList.add("opacity-100");
+        } else {
+            // Hide navbar when at top
+            navbar.classList.add("-translate-y-full");
+            navbarContent.classList.remove("opacity-100");
+            navbarContent.classList.add("opacity-0");
+        }
+    });
+
+    // Slide-out menu functionality
+    const hamburgerClear = document.getElementById("hamburger-clear");
+    const hamburgerBlack = document.getElementById("hamburger-black");
+    const slideMenu = document.getElementById("slide-menu");
+    const menuBackdrop = document.getElementById("menu-backdrop");
+    const closeMenu = document.getElementById("close-menu");
+    let isMenuOpen = false;
+
+    function toggleMenu() {
+        if (isMenuOpen) {
+            closeMenuFunc();
+        } else {
+            openMenuFunc();
+        }
+    }
+
+    function addHashToUrl(url, hash) {
+        window.location.href = url + "#" + hash;
+    }
+
+    function removeHashFromUrl() {
+        history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
+
+    function openMenuFunc() {
+        if (isMenuOpen) return;
+        
+        isMenuOpen = true;
+        
+        // Add menu-open class to body and page container
+        document.body.classList.add("menu-open");
+        
+        // Find the main page container (usually body or a main wrapper)
+        const pageContainer = document.body;
+        pageContainer.classList.add("menu-open");
+        
+        // Show menu and backdrop
+        slideMenu.classList.add("menu-open");
+        menuBackdrop.classList.remove("opacity-0", "invisible");
+        menuBackdrop.classList.add("opacity-100", "visible");
+        
+        addHashToUrl(window.location.href, "menu");
+    }
+
+    function closeMenuFunc() {
+        if (!isMenuOpen) return;
+        
+        isMenuOpen = false;
+        
+        // Remove menu-open class from body and page container
+        document.body.classList.remove("menu-open");
+        
+        // Find the main page container
+        const pageContainer = document.body;
+        pageContainer.classList.remove("menu-open");
+        
+        // Hide menu and backdrop
+        slideMenu.classList.remove("menu-open");
+        menuBackdrop.classList.remove("opacity-100", "visible");
+        menuBackdrop.classList.add("opacity-0", "invisible");
+        
+        removeHashFromUrl();
+    }
+
+    // Event listeners
+    hamburgerBlack.addEventListener("click", toggleMenu);
+    hamburgerClear.addEventListener("click", toggleMenu);
+    closeMenu.addEventListener("click", closeMenuFunc);
+    
+    // Close menu when clicking backdrop
+    menuBackdrop.addEventListener("click", closeMenuFunc);
+    
+    // Close menu on escape key
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape" && isMenuOpen) {
+            closeMenuFunc();
+        }
+    });
+    
+    // Close menu when clicking on menu items (optional)
+    const menuItems = slideMenu.querySelectorAll('nav a');
+    menuItems.forEach(item => {
+        item.addEventListener('click', closeMenuFunc);
+    });
+</script>
+
+        <main class="">
+            
+<div class="flex flex-col items-center justify-center pt-25 pb-18 bg-gradient-to-tr from-green-50 to-blue-50">
+    <div class="max-w-xl mx-auto">
+        <div class="p-10">
+            <h1 class="text-3xl font-bold text-black mb-8">Why Sell Your Oil & Gas Interest?</h1>
+            
+            <div class="mt-6 space-y-6 text-gray-600">
+                <p class="text-lg leading-relaxed">
+                    Deciding whether to sell all or part of your royalty or mineral interest is a deeply personal decision. For many owners, it comes down to balancing the uncertainty of long-term production against the certainty of a guaranteed cash payout. While each seller has unique reasons, most can be summarized in three simple explanations:
+                </p>
+
+                <ul class="list-disc ml-6 mt-2 space-y-2">
+                    <li><strong>Simplify Your Life</strong></li>
+                    <li><strong>Minimize Your Risk</strong></li>
+                    <li><strong>Receive an Influx of Cash</strong></li>
+                </ul>
+
+                <div class="h-[1px] bg-black/25 my-8"></div>
+
+                <h2 class="text-xl font-semibold text-black mt-8">1. Simplify Your Life</h2>
+                <p>Owning mineral and royalty interests comes with ongoing responsibilities and complications:</p>
+                <ul class="list-disc ml-6 mt-2 space-y-2">
+                    <li><strong>Estate Planning:</strong> Selling your interests ensures your estate is clean and frees heirs from the burden of complex title transfers.</li>
+                    <li><strong>Bookkeeping & Paperwork:</strong> Managing mineral rights requires staying on top of monthly revenue statements, division orders, tax filings, and lease documents. Selling eliminates this hassle.</li>
+                    <li><strong>Heirs Not Interested:</strong> Some heirs may not want the responsibility of managing minerals. Selling ensures your family receives value without the burden. Remember, small interests, for some people, can be a burden to sell and own!</li>
+                </ul>
+
+                <div class="h-[1px] bg-black/25 my-8"></div>
+
+                <h2 class="text-xl font-semibold text-black mt-8">2. Minimize Your Risk</h2>
+                <p>The oil and gas industry is unpredictable. Selling allows you to protect yourself from market risks, including:</p>
+                <ul class="list-disc ml-6 mt-2 space-y-2">
+                    <li><strong>Volatility in oil & gas prices</strong> that directly affect your monthly royalty income.</li>
+                    <li><strong>Declining production</strong> — all wells deplete, and many decline steeply after the first few years.</li>
+                    <li><strong>Operator risks</strong> — bankruptcies, operational shutdowns, or poor management that impact your payments.</li>
+                    <li><strong>Future regulation or taxation</strong> that could reduce your revenue.</li>
+                </ul>
+                <p class="mt-3">By selling, you can convert a depleting, uncertain asset into guaranteed value today.</p>
+
+                <div class="h-[1px] bg-black/25 my-8"></div>
+
+                <h2 class="text-xl font-semibold text-black mt-8">3. Receive an Influx of Cash</h2>
+                <p>Selling provides immediate financial flexibility that small monthly royalty checks cannot match. A lump sum payout can allow you to:</p>
+                <ul class="list-disc ml-6 mt-2 space-y-2">
+                    <li>Pay off debts (mortgage, medical bills, car loans, credit cards).</li>
+                    <li>Fund a loved one's education.</li>
+                    <li>Renovate or update your home</li>
+                    <li>Buy a vacation property or land! Check out <a href="https://texasranchsalesllc.com" class="text-blue-600 hover:text-blue-800 underline">Texas Ranch Sales</a> to find your dream property!</li>
+                    <li>Utilize an IRS Form 1031 Exchange to reduce tax burdens through our preferred provider of 1031 services <a href="https://psi1031.com" class="text-blue-600 hover:text-blue-800 underline">Petroleum Strategies</a>.</li>
+                    <li>Take a meaningful vacation with family.</li>
+                    <li>Build a retirement safety net.</li>
+                    <li>Reinvest into other opportunities for diversification and growth.</li>
+                </ul>
+
+                <div class="h-[1px] bg-black/25 my-8"></div>
+
+                <h2 class="text-xl font-semibold text-black mt-8">Additional Reasons Owners Choose to Sell</h2>
+                <ul class="list-disc ml-6 mt-2 space-y-2">
+                    <li><strong>Investment Diversification:</strong> Reallocate value into other opportunities, such as real estate, stocks, or a new business.</li>
+                    <li><strong>Lifestyle Improvements:</strong> A lump sum payout (whether $10K or $100K+) can dramatically improve quality of life.</li>
+                    <li><strong>Reduce Tax Burden:</strong> <em>Ad valorem</em> property taxes and income taxes on small royalties can feel more like a burden than a benefit.</li>
+                    <li><strong>Environmental Values:</strong> Some owners prefer to exit fossil-fuel ownership and use proceeds to support renewable energy or sustainable projects.</li>
+                </ul>
+
+                <div class="h-[1px] bg-black/25 my-8"></div>
+
+                <h2 class="text-xl font-semibold text-black mt-8">Our Commitment</h2>
+                <p>At SMB Royalty, LLC, we strive to make the process of selling your mineral or royalty interests fast, fair, and stress-free.</p>
+                <ul class="list-disc ml-6 mt-2 space-y-2">
+                    <li><strong>Competitive, no-obligation offers</strong></li>
+                    <li><strong>Confidential, discreet transactions</strong></li>
+                    <li><strong>Simple process with clear communication</strong></li>
+                    <li><strong>Quick funding once documents are signed</strong></li>
+                </ul>
+                <p class="mt-3">We buy producing interests across the United States, with particular focus in Texas and other major producing regions. Unlike many companies, we do not flip minerals—we buy for long-term ownership, which allows us to close quickly and offer a fair market price.</p>
+
+                <div class="h-[1px] bg-black/25 my-8"></div>
+
+                <h2 class="text-xl font-semibold text-black mt-8">Our Simple 4-Step Process</h2>
+                <ol class="list-decimal ml-6 mt-2 space-y-3">
+                    <li><strong>Request a no-obligation Offer</strong> – Enter your name and Zipcode, choose your property, create an account and get your AI generated offer!</li>
+                    <li><strong>Submit Revenue Statement/Check Stub</strong> – Upload recent royalty statement.</li>
+                    <li><strong>Review Offer and generate your Mineral Deed</strong> – Once you decide to sell, simply Generate your own Deed for you to download and print, instantly; or use notarize.com for 24/7 online notary services!</li>
+                    <li><strong>Close & Get Paid</strong> – Once documents are signed and notarized, we fund quickly within 10 business days, subject to Terms and Conditions.</li>
+                </ol>
+
+                <div class="h-[1px] bg-black/25 my-8"></div>
+
+                <h2 class="text-xl font-semibold text-black mt-8">Ready to Explore Your Options?</h2>
+                <p>Whatever your reason—simplifying your life, reducing your risk, or unlocking the value of your minerals—<strong>SMB Royalty, LLC</strong> is here to help.</p>
+                <p class="mt-3"><strong>Start today by uploading your latest revenue statement.</strong> We will contact you with a competitive, no-obligation offer.</p>
+                <a href="get-offer.html">
+                    <button class="bg-green-600 text-white px-5 py-2 rounded-full hover:bg-green-700 transition-colors font-medium cursor-pointer">Get Offer</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </main>
+
+        
+
+<footer class="bg-gray-800 text-white py-12 flex flex-col items-center justify-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(5,min-content)] md:py-12 whitespace-nowrap gap-x-14 gap-y-10 mb-8">
+            <!-- Column 1: Branding & Tagline -->
+            <div class="lg:col-span-1">
+                <h3 class="text-xl font-bold text-green-400 mb-3">SMB Royalty</h3>
+                <p class="text-gray-400 text-xs">&copy; 2025 SMB Royalty, LLC.</p>
+                <p class="text-gray-400 text-xs">All rights reserved.</p>
+            </div>
+
+            <!-- Column 2: Contact Information -->
+            <div class="lg:col-span-1">
+                <h4 class="text-lg font-semibold mb-4 text-green-400">Contact Us</h4>
+                <div class="space-y-1 text-sm text-gray-300 grid grid-cols-[min-content_1fr] gap-x-2">
+                    <p>Address:</p>
+                    <p>SMB ROYALTY<br>P.O. Box 236<br>Midland, TX&nbsp;&nbsp;79702</p>
+                    <p>Phone:</p>
+                    <a href="tel:+14322421225" class="text-gray-300 hover:text-green-400 transition-colors">(432) 242-1225</a>
+                    <p>Email:</p>
+                    <a href="mailto:info@smbroyalty.com" class="text-gray-300 hover:text-green-400 transition-colors">info@smbroyalty.com</a>
+                </div>
+            </div>
+     
+            <!-- Column 3: Quick Links -->
+            <div class="lg:col-span-1">
+                <h4 class="text-lg font-semibold mb-4 text-green-400">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="index.html" class="text-gray-300 hover:text-green-400 transition-colors">Home</a></li>
+                    <li><a href="why-sell.html" class="text-gray-300 hover:text-green-400 transition-colors">Why Sell?</a></li>
+                    <!-- <li><a href="/our-philosophy" class="text-gray-300 hover:text-green-400 transition-colors">Our Philosophy</a></li> -->
+                    <!-- <li><a href="/the-process" class="text-gray-300 hover:text-green-400 transition-colors">Buying Process</a></li> -->
+                    <li><a href="faq.html" class="text-gray-300 hover:text-green-400 transition-colors">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Resources -->
+            <div class="lg:col-span-1">
+                <h4 class="text-lg font-semibold mb-4 text-green-400">Resources</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="about-us.html" class="text-gray-300 hover:text-green-400 transition-colors">About Us</a></li>
+                    <li><a href="essays.html" class="text-gray-300 hover:text-green-400 transition-colors">Essays</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="lg:col-span-2 flex justify-center">
+            <div class="flex items-end gap-3">
+                <a href="https://robbinsfamilyminerals.com/" target="_blank" class="hover:text-green-400 transition-colors">
+                    <img src="static/icon/RFI-white-clear.png" alt="RFI Logo" class="h-6 opacity-70">
+                </a>
+                <span class="text-gray-400 select-none">•</span>
+                <a href="https://texasranchsalesllc.com/" target="_blank" class="hover:text-green-400 transition-colors opacity-70">
+                    <img src="static/icon/TRS-white-clear.png" alt="TRS Logo" class="h-4">
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-gray-700 pt-6 mt-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
+                <div class="text-sm text-gray-400">
+                    <a href="privacy.html" class="hover:text-green-400 transition-colors">Privacy</a>
+                    <span class="mx-2">•</span>
+                    <a href="terms.html" class="hover:text-green-400 transition-colors">Terms</a>
+                    <span class="mx-2">•</span>
+                    <a href="offer-terms.html" class="hover:text-green-400 transition-colors">Instant Offer Terms</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+        <div class="absolute inset-0 -z-1">
+            
+        </div>
+    </body>
+</html> 
